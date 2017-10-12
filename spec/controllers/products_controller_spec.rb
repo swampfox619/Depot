@@ -17,7 +17,7 @@ RSpec.describe ProductsController do
                         description: "Description",
                         price: 1,
                         id: 1,
-                        image_url: "zzz.jpg"
+                        image_url: "zzz.jpg",
                     ) }
     
 
@@ -63,6 +63,14 @@ RSpec.describe ProductsController do
         it "should destroy product" do
             delete :destroy, {id: product.id}
             expect(response).to redirect_to(products_path)
+        end
+        
+        it "can't delete a product in the cart" do
+            if product.line_items
+                delete :destroy, {id: product.id}
+                Product.find(product.id)
+                expect(response).not_to be(nil)
+            end
         end
     end
 end
