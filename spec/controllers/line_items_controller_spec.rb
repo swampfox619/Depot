@@ -25,9 +25,7 @@ require 'rails_helper'
 
 RSpec.describe LineItemsController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # LineItem. As you add validations to LineItem, be sure to
-  # adjust the attributes here as well.
+
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
   }
@@ -36,9 +34,7 @@ RSpec.describe LineItemsController, type: :controller do
     skip("Add a hash of attributes invalid for your model")
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # LineItemsController. Be sure to keep this updated too.
+
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -73,6 +69,7 @@ RSpec.describe LineItemsController, type: :controller do
   end
 
   describe "POST #create" do
+    
     context "with valid params" do
       it "creates a new LineItem" do
         expect {
@@ -82,7 +79,7 @@ RSpec.describe LineItemsController, type: :controller do
 
       it "redirects to the created line_item" do
         post :create, {:line_item => valid_attributes}, valid_session
-        expect(response).to redirect_to(LineItem.last)
+        expect(response).to redirect_to(LineItem.last.cart)
       end
     end
 
