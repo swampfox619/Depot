@@ -8,6 +8,12 @@
 </head>
 <body class='<%= controller.controller_name %>'>
   <div id="banner">
+    <%= form_tag store_index_path, class: 'locale' do %>
+      <%= select_tag 'set_locale',
+        options_for_select(LANGUAGES, I18n.locale.to_s),
+        onchange: 'this.form.submit()' %>
+      <%= submit_tag 'submit' %>
+    <% end %>
     <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
     <span class="title"><%= @page_title %></span>
   </div>
@@ -19,10 +25,10 @@
         <% end %>
       <% end %>
       <ul>
-        <li><a href="http://depot-lewvine.c9users.io">Home</a></li>
-        <li><a href="http://depot-lewvine.c9users.io/faq">Questions</a></li>
-        <li><a href="http://depot-lewvine.c9users.io/news">News</a></li>
-        <li><a href="http://depot-lewvine.c9users.io/contact">Contact</a></li>
+        <li><a href="http://depot-lewvine.c9users.io"><%= t('.home') %></a></li>
+        <li><a href="http://depot-lewvine.c9users.io/faq"><%= t('.questions') %></a></li>
+        <li><a href="http://depot-lewvine.c9users.io/news"><%= t('.news') %></a></li>
+        <li><a href="http://depot-lewvine.c9users.io/contact"><%= t('.contact') %></a></li>
       </ul>
       
       <% if session[:user_id] %>
